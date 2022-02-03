@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/css/NavBar.css'
+import CartWidget from './CartWidget';
+import '../assets/css/NavBar.css';
 
 const NavBar = () => {
     return(
@@ -10,6 +11,7 @@ const NavBar = () => {
             <li><a class="btn btn-outline-warning" href="#" role="button">Teclados</a></li>
             <li><a class="btn btn-outline-info" href="#" role="button">Categorias</a></li>
           </ul>
+          <CartWidget/>
         </nav>
     )
 }

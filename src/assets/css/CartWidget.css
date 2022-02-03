@@ -1,0 +1,10 @@
+.CartWidget {
+    display: flex; 
+    flex-grow: 1; 
+    justify-content: end;
+    align-items: center;
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.CartWidget img {width: 4rem; margin: 0 10px;}
