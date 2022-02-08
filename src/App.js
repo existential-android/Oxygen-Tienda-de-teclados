@@ -7,8 +7,10 @@ function App() {
     <>
       <header>
         <NavBar/>
-        <ItemListContainer/>
       </header>
+      <main>
+        <ItemListContainer/>
+      </main>
     </>
   );
 }

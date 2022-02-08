@@ -1,2 +1,2 @@
-.ItemListContainer {display: flex;justify-content: center;}
+.ItemListContainer {display: flex; flex-direction: column; align-items: center;}
 .ItemListContainer h2 {margin: 10px;font: 40px 'Playfair Display';}

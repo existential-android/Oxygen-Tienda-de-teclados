@@ -1,0 +1,6 @@
+.ItemCount {display: flex; flex-direction: column;}
+.ItemCount h3 {margin: 20px 0}
+.ItemCount img {margin: 40px 0;}
+.ItemCount button {background: white;}
+.ItemCount__contador {display: flex;}
+.ItemCount__contador span {flex-grow: 1; text-align: center;}
