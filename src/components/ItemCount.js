@@ -11,9 +11,6 @@ const ItemCount = (props) => {
     }
     return(
         <div class="ItemCount">
-            <h3>{props.nombre}</h3>
-            <img src={props.imagen}></img>
-            <span>Stock: {props.stock}</span>
             <div class="ItemCount__contador">
                 <button onClick={disminuir}>-</button>
                 <span>{cantidad}</span>
