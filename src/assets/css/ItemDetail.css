@@ -1,0 +1,8 @@
+.ItemDetail {display: grid; grid-template-columns: 1fr 1fr; height: 85vh; padding: 5% 15%;}
+.ItemDetail .ItemDetail__ImageContainer {display: flex; justify-content: center; align-items: center;}
+.ItemDetail .ItemDetail__ImageContainer img {width: 70%;}
+.ItemDetail .ItemDetail__InfoContainer {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly;
+}

@@ -1,6 +1,7 @@
 nav {
     display: flex; 
     align-items: center; 
+    height: 15vh;
     padding: 1rem 0;
     background-color: #f5f5dc;
 }
