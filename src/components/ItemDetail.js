@@ -1,7 +1,18 @@
+import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { CartContext } from "./CartContext";
 import ItemCount from '../components/ItemCount';
+import Checkout from "./Checkout";
 import '../assets/css/ItemDetail.css';
 
 const ItemDetail = (props) => {
+    const test = useContext(CartContext);
+    const [itemCount, setItemCount] = useState(0)
+    const onAdd = (qty) => {
+        setItemCount(qty);
+        test.addToCart(props, qty)
+    }
+    console.log(test);
     return (
         <section class="ItemDetail">
             <div class="ItemDetail__ImageContainer">
@@ -12,7 +23,11 @@ const ItemDetail = (props) => {
                 <div>{props.item.descripcion}</div>
                 <span>S/.{props.item.precio}</span>
                 <span>{props.item.stock} unidades disponibles</span>
-                <ItemCount stock={props.item.stock} />
+                {
+                    itemCount === 0
+                    ? <ItemCount stock={props.item.stock} onAdd={onAdd}/>
+                    : <Link to="/cart"><Checkout /></Link>
+                }
             </div>
         </section>
     )
