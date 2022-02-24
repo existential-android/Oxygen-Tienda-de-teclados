@@ -1,29 +1,30 @@
 import { CartContext } from "./CartContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import '../assets/css/Cart.css';
 
 
 const Cart = () => {
     const test = useContext(CartContext);
-    console.log(test.cartList)
     return(
-        <>
+        <div class="Cart">
             <h2>Cart</h2>
+            <ul>
             {test.cartList.map(item =>{
                 return(
-                    <div>
+                    <li class="CartItem" key={item.key}>
                         <img src={item.imagen}></img>
                         <div>
                             <h3>{item.nombre}</h3>
-                            <button>Eliminar</button>
+                            <span>{item.qty} items</span>
+                            <span>S/. {item.precio}</span>
+                            <button onClick={() => test.deleteProduct(item.key)}>Eliminar</button>
                         </div>
-                        <div>
-                            <span>{item.qty}</span>
-                            <span>{item.precio}</span>
-                        </div>
-                    </div>
+                    </li>
                 )}
             )}
-        </>
+            </ul>
+            <button onClick={test.removeList}>Quitar todo</button>
+        </div>
     )
 }
 

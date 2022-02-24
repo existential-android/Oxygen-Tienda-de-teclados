@@ -1,0 +1,5 @@
+.Cart .CartItem {display: flex; margin: 2%; height: 22vh;}
+.Cart .CartItem img {width: 25%; object-fit: cover; margin: 0 3%}
+.Cart .CartItem div {display: flex; flex-direction: column; justify-content: space-evenly;}
+.Cart .CartItem button {width: 15vw;}
+.Cart button {width: 25%; margin: 4% 4%}

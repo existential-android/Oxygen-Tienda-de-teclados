@@ -12,7 +12,6 @@ const ItemDetail = (props) => {
         setItemCount(qty);
         test.addToCart(props, qty)
     }
-    console.log(test);
     return (
         <section class="ItemDetail">
             <div class="ItemDetail__ImageContainer">
