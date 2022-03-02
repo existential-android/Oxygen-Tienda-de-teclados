@@ -1,5 +1,12 @@
+.NoCartList {display: flex; flex-direction: column; align-items: center;}
+
+.CartContainer h2 {text-align: center; margin: 2%;}
+.Cart {display: flex; justify-content: space-between;}
 .Cart .CartItem {display: flex; margin: 2%; height: 22vh;}
-.Cart .CartItem img {width: 25%; object-fit: cover; margin: 0 3%}
+.Cart .CartItem img {width: 50%; height: 20vh; object-fit: cover; margin: 0 2vw}
 .Cart .CartItem div {display: flex; flex-direction: column; justify-content: space-evenly;}
 .Cart .CartItem button {width: 15vw;}
-.Cart button {width: 25%; margin: 4% 4%}
+.Cart .CartSummary {padding: 2%; border: solid 2px;}
+.Cart .CartSummary div {display: flex; justify-content: space-between;}
+.Cart .CartSummary button {width: 100%; margin: 0;}
+.CartContainer button {width: 36%; margin: 4% 4%}
