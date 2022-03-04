@@ -1,18 +1,29 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CustomFecth from "../utils/CustomFetch";
 import ItemDetail from '../components/ItemDetail';
-const {data} = require("../utils/data");
+import { doc, getDoc } from "firebase/firestore";
+import db from "../utils/firebaseConfig";
 
 const ItemDetailContainer = () => {
     const [producto, setProducto] = useState([]);
     const {idItem} = useParams();
     useEffect(() => {
-        setTimeout(() => {
-            CustomFecth(data.find(item => item.id == idItem))
-                .then(result => setProducto(result))
-                .catch(error => console.log(error))
-        }, 2000)
+        const firestoreFetch = async () => {
+            const docRef = doc(db, "data", idItem);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                return {
+                    id: document.id,
+                    ...docSnap.data()
+                }
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("Producto no encontrado.");
+            }
+        }
+        firestoreFetch()
+            .then(result => setProducto(result))
+            .catch(error => console.log(error))
     }, [])
     return (
         <section class="ItemDetailContainer">

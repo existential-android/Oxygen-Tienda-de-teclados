@@ -1,28 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CustomFecth from "../utils/CustomFetch";
 import ItemList from '../components/ItemList';
 import '../assets/css/ItemListContainer.css';
-const {data} = require("../utils/data");
-
+import { collection, getDocs } from "firebase/firestore";
+import db from "../utils/firebaseConfig";
 
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
     const {idCategory} = useParams();
     useEffect(() => {
-        if (idCategory === undefined) {
-            setTimeout(() => {
-                CustomFecth(data)
-                    .then(result => setProductos(result))
-            }, 2000)
+        const firestoreFetch = async () => {
+            const querySnapshot = await getDocs(collection(db, "data"));
+            return querySnapshot.docs.map( document => ({
+                id: document.id,
+                ...document.data()
+            }));
         }
-        else {
-            setTimeout(() => {
-                CustomFecth(data.filter(item => item.categoria === idCategory))
-                    .then(result => setProductos(result))
-                    .catch(error => console.log(error))
-            }, 2000)
-        }
+        firestoreFetch()
+            .then(result => setProductos(result))
+            .catch(error => console.log(error))
     }, [idCategory])
     return (
         <section class="ItemListContainer">
