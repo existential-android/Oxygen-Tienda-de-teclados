@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import { useContext, useState } from "react";
 import '../assets/css/Cart.css';
+import { collection, serverTimestamp, setDoc, doc, updateDoc, increment } from "firebase/firestore";
+import db from "../utils/firebaseConfig";
 
 
 const Cart = () => {
@@ -16,6 +18,35 @@ const Cart = () => {
         taxes += (item.precio*3)/100;
         total += subtotal + shippingCost + taxes;
     });
+    const createOrder = () => {
+        let order = {
+            buyer: {
+                email: "a",
+                name: "a",
+                phone: "a"
+            },
+            date: serverTimestamp(),
+            items: test.cartList.map(item => {return {id: item.key, name: item.nombre, price: item.precio, qty: item.qty}}),
+            total: total
+        }
+        const createOrderInFirestore = async() => {
+            const newOrderRef = doc(collection(db, "orders"));
+            await setDoc(newOrderRef, order)
+            return newOrderRef;
+        }
+        createOrderInFirestore()
+            .then(result => {
+                alert("Tu orden ha sido creada" + result.id);
+                test.cartList.map(async (item) => {
+                    const itemRef = doc(db, "data", item.key)
+                    await updateDoc(itemRef, {
+                        stock: increment(-item.qty)
+                    })
+                })
+                test.removeList();
+            })
+            .catch(error => console.log(error))
+    }
     return(
         <div class="CartContainer">
             <h2>Cart</h2>
@@ -60,7 +91,7 @@ const Cart = () => {
                             <span>Total</span>
                             <span>S/. {total}</span>
                         </div>
-                        <button>Checkout</button>
+                        <button onClick={createOrder}>Checkout</button>
                     </div>
                 </div>
             }

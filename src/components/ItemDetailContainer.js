@@ -13,7 +13,7 @@ const ItemDetailContainer = () => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 return {
-                    id: document.id,
+                    id: idItem,
                     ...docSnap.data()
                 }
             } else {
