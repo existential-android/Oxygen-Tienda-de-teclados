@@ -3,15 +3,22 @@ nav {
     align-items: center; 
     height: 15vh;
     padding: 1rem 0;
-    background-color: #f5f5dc;
+    background-color: #ebebeb;
 }
 a {text-decoration: none;}
+nav ul {display: flex;}
+nav .category {
+    padding: 0 1vw;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(245, 154, 35);
+}
 h1 {
     font-size: 50px;
     margin: 0; 
     padding: 0 2rem; 
-    color: white; 
-    text-shadow: 2px 2px 1px rgb(94, 94, 94);
+    color: rgb(49, 49, 49); 
+    text-shadow: 2px 2px 1px rgb(168, 168, 168);
 }
 ul {margin: 0; padding: 0;}
 li {list-style: none;}

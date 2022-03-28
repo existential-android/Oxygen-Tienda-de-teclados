@@ -1,0 +1,20 @@
+.clientData__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.315);
+}
+.clientData {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20%;
+    height: 30%;
+    background-color: white;
+}
+.clientData input {width: 15vw;}

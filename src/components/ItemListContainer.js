@@ -7,6 +7,7 @@ import db from "../utils/firebaseConfig";
 
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
+    console.log(productos.length)
     const {idCategory} = useParams();
     useEffect(() => {
         const firestoreFetch = async () => {
@@ -16,14 +17,26 @@ const ItemListContainer = () => {
                 ...document.data()
             }));
         }
-        firestoreFetch()
-            .then(result => setProductos(result))
-            .catch(error => console.log(error))
+        {
+            idCategory === undefined
+            ? firestoreFetch()
+                .then(result => setProductos(result))
+                .catch(error => console.log(error))
+            : firestoreFetch()
+                .then(result => setProductos(result.filter(res => res.categoria == idCategory)))
+                .catch(error => console.log(error))
+        }
+        
     }, [idCategory])
     return (
         <section class="ItemListContainer">
             <h2>Catálogo</h2>
-            <ItemList items={productos} />
+        {
+            productos.length === 0
+            ? <span>Cargando...</span>
+            : <ItemList items={productos} />
+              
+        }
         </section>
     )
 }

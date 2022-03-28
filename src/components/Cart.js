@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import { useContext, useState } from "react";
 import '../assets/css/Cart.css';
+import '../assets/css/clientData.css';
 import { collection, serverTimestamp, setDoc, doc, updateDoc, increment } from "firebase/firestore";
 import db from "../utils/firebaseConfig";
 
@@ -18,12 +19,21 @@ const Cart = () => {
         taxes += (item.precio*3)/100;
         total += subtotal + shippingCost + taxes;
     });
-    const createOrder = () => {
+    let [clientData, setClientData] = useState(false);
+    let clientName = "";
+    let clientEmail = "";
+    let clientPhone = "";
+    const clientDataName = (val) => {clientName = val.target.value;}
+    const clientDataEmail = (val) => {clientEmail = val.target.value}
+    const clientDataPhone = (val) => {clientPhone = val.target.value}
+    const askClientData = () => {setClientData(true);}
+    const createOrder = (a, b, c) => {
+        console.log(a, b, c)
         let order = {
             buyer: {
-                email: "a",
-                name: "a",
-                phone: "a"
+                email: b,
+                name: a,
+                phone: c
             },
             date: serverTimestamp(),
             items: test.cartList.map(item => {return {id: item.key, name: item.nombre, price: item.precio, qty: item.qty}}),
@@ -46,6 +56,7 @@ const Cart = () => {
                 test.removeList();
             })
             .catch(error => console.log(error))
+        setClientData(false);
     }
     return(
         <div class="CartContainer">
@@ -91,12 +102,32 @@ const Cart = () => {
                             <span>Total</span>
                             <span>S/. {total}</span>
                         </div>
-                        <button onClick={createOrder}>Checkout</button>
+                        <button onClick={askClientData}>Checkout</button>
                     </div>
                 </div>
             }
             {   test.cartList.length != 0 &&
                 <button onClick={test.removeList}>Quitar todo</button>
+            }
+            {
+                clientData == true &&
+                <div class="clientData__container">
+                    <div class="clientData">
+                        <div>
+                            <div>Nombre y Apellido: </div>
+                            <input type="text" onChange={clientDataName}></input>
+                        </div>
+                        <div>
+                            <div>Email: </div>
+                            <input type="text" onChange={clientDataEmail}></input>
+                        </div>
+                        <div>
+                            <div>Teléfono</div>
+                            <input type="text" onChange={clientDataPhone}></input>
+                        </div>
+                        <button onClick={() => {createOrder(clientName, clientEmail, clientPhone)}}>Finalizar pedido</button>
+                    </div>
+                </div>
             }
         </div>
     )

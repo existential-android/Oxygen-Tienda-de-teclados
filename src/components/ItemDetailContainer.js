@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ItemDetail from '../components/ItemDetail';
 import { doc, getDoc } from "firebase/firestore";
 import db from "../utils/firebaseConfig";
+import '../assets/css/ItemDetailContainer.css';
 
 const ItemDetailContainer = () => {
     const [producto, setProducto] = useState([]);
@@ -27,7 +28,11 @@ const ItemDetailContainer = () => {
     }, [])
     return (
         <section class="ItemDetailContainer">
-            <ItemDetail item={producto} />
+        {
+            producto.length === 0
+            ? <span>Cargando...</span>
+            : <ItemDetail item={producto} />
+        }
         </section>
     )
 }

@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 }
-.Item img {width: 55%; height: 42%; object-fit: cover;}
+.Item img {width: 48%; height: 51%; object-fit: cover;}
 .Item h3 {margin: 20px 0} 
 .Item button {
     margin: 10px; 

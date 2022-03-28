@@ -8,8 +8,8 @@ const NavBar = () => {
         <nav>
           <Link to="/"><h1>Oxygen</h1></Link>
           <ul>
-            <li><Link to="/category/gamer">Gaming</Link></li>
-            <li><Link to="/category/programacion">Programación</Link></li>
+            <li><Link to="/category/gamer" class="category">Gaming</Link></li>
+            <li><Link to="/category/programacion" class="category">Programación</Link></li>
           </ul>
           <CartWidget/>
         </nav>
